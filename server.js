@@ -6,6 +6,11 @@ const connectDB = require('./config/db');
 // initiate express
 const app = express();
 
+const corsOptions = {
+	origin: process.env.ALLOWED_CLIENTS.split(',')
+};
+app.use(cors(corsOptions));
+
 // Template engine
 app.set('view engine', 'ejs');
 
@@ -19,12 +24,6 @@ app.use('/files/download/', require('./routes/download'));
 connectDB();
 
 // CORS
-
-const corsOptions = {
-	origin: 'http://localhost:3000/projects/fileSharing/Frontend/'
-};
-
-app.use(cors(corsOptions));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
