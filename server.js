@@ -21,7 +21,7 @@ connectDB();
 // CORS
 
 const corsOptions = {
-	origin: 'http://localhost:3000'
+	origin: 'http://localhost:3000/projects/fileSharing/Frontend/'
 };
 
 app.use(cors(corsOptions));
