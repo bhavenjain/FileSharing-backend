@@ -1,5 +1,6 @@
 const express = require('express');
 const ejs = require('ejs');
+const cors = require('cors');
 const connectDB = require('./config/db');
 
 // initiate express
@@ -16,6 +17,14 @@ app.use('/files/download/', require('./routes/download'));
 
 // Start the mongodb database
 connectDB();
+
+// CORS
+
+const corsOptions = {
+	origin: process.env.ALLOWED_CLIENTS.split(',')
+};
+
+app.use(cors(corsOptions));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
